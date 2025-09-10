@@ -82,7 +82,6 @@ def generate_html_report(results, mentions, brand_list):
             .result {{ border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px; }}
             .question {{ font-weight: bold; margin-bottom: 10px; }}
             .response {{ white-space: pre-wrap; }}
-            .hidden {{ display: none; }}
             .badge {{ background: #007BFF; color: white; padding: 2px 6px; border-radius: 6px; margin-left: 6px; font-size: 12px; }}
         </style>
         <script>
@@ -172,6 +171,12 @@ if api_key and st.button("🚀 Run Analysis"):
 
     # Export as HTML
     html_report = generate_html_report(results, mentions, brand_list)
+
+    # Preview inside Streamlit
+    st.subheader("👀 Preview Report")
+    st.components.v1.html(html_report, height=600, scrolling=True)
+
+    # Download button
     st.download_button(
         label="⬇️ Download HTML Report",
         data=html_report,
